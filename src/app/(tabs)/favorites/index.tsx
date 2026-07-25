@@ -48,7 +48,7 @@ export default function FavoritesScreen(): React.ReactElement {
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.headerTitle}>
-          ❤️ Your Favorites ({favorites.length})
+          Your Favorites ({favorites.length})
         </Text>
       </View>
       <FlatList

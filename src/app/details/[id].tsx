@@ -21,7 +21,7 @@ import { spacing, borderRadius } from '@/theme/spacing';
 import { typography } from '@/theme/typography';
 
 export default function DetailsScreen(): React.ReactElement {
-  const { id } = useLocalSearchParams<{ id: string }>();
+const { id } = useLocalSearchParams<{ id: string }>();
   const breedId = parseInt(id, 10);
   
   const [breed, setBreed] = useState<Breed | null>(null);
@@ -64,7 +64,7 @@ export default function DetailsScreen(): React.ReactElement {
     if (!breed) return;
     try {
       await Share.share({
-        message: `Check out the ${breed.name} dog breed! 🐕`,
+        message: `Check out the ${breed.name} dog breed!`,
         title: breed.name,
         url: selectedImage || undefined,
       });
@@ -81,7 +81,7 @@ export default function DetailsScreen(): React.ReactElement {
   if (!breed) {
     return (
       <View style={styles.errorContainer}>
-        <Text style={styles.errorEmoji}>🐕</Text>
+        <Text style={styles.errorEmoji}></Text>
         <Text style={styles.errorTitle}>Breed not found</Text>
         <TouchableOpacity 
           style={styles.backButton}

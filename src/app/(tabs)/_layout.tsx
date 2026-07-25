@@ -38,7 +38,7 @@ export default function TabLayout(): React.ReactElement{
             <Tabs.Screen
         name="favorites"
         options={{
-          title: 'Favorites',
+          title: 'Favorite',
           tabBarIcon: ({ focused, color, size }) => (
             <Ionicons 
               name={focused ? 'heart' : 'heart-outline'} 

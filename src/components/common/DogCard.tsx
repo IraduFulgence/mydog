@@ -8,12 +8,9 @@ import {
   Dimensions,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { Breed } from '@/app/types/Breed';
 import DogApi from '@/app/api/DogApi';
-import { colors } from '@/theme/colors';
-import { spacing, borderRadius } from '@/theme/spacing';
-import { typography } from '@/theme/typography';
-
+import { Breed } from '@/app/types/Breed';
+// This is where we will load all breeds to display each on card 
 interface DogCardProps {
   breed: Breed;
   onPress: () => void;
@@ -22,7 +19,7 @@ interface DogCardProps {
 }
 
 const { width } = Dimensions.get('window');
-const cardWidth = (width - spacing.xl * 2 - spacing.sm) / 2;
+const cardWidth = (width - 40 - 12) / 2;
 
 export const DogCard: React.FC<DogCardProps> = ({
   breed,
@@ -32,15 +29,17 @@ export const DogCard: React.FC<DogCardProps> = ({
 }) => {
   const [imageUrl, setImageUrl] = useState<string | null>(null);
 
+  // Load the breed image - I should add a placeholder
   useEffect(() => {
-    const loadImage = async () => {
+    const loadImage = async (): Promise<void> => {
       try {
         const images = await DogApi.fetchBreedImages(breed.id, 1);
         if (images.length > 0) {
           setImageUrl(images[0].url);
         }
       } catch (error) {
-        console.error('Failed to load breed image:', error);
+        // Just use the placeholder if image fails
+        console.debug('Image load failed for breed:', breed.id);
       }
     };
 
@@ -73,7 +72,7 @@ export const DogCard: React.FC<DogCardProps> = ({
             <Ionicons
               name={isFavorite ? 'heart' : 'heart-outline'}
               size={24}
-              color={isFavorite ? colors.accent : colors.surface}
+              color={isFavorite ? '#ff6b6b' : '#fff'}
             />
           </TouchableOpacity>
         )}
@@ -92,13 +91,15 @@ export const DogCard: React.FC<DogCardProps> = ({
   );
 };
 
+// style for my main card
+
 const styles = StyleSheet.create({
   card: {
     width: cardWidth,
-    backgroundColor: colors.surface,
-    borderRadius: borderRadius.lg,
-    marginVertical: spacing.sm,
-    shadowColor: colors.text,
+    backgroundColor: '#fff',
+    borderRadius: 16,
+    marginVertical: 8,
+    shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.08,
     shadowRadius: 8,
@@ -108,7 +109,7 @@ const styles = StyleSheet.create({
   imageContainer: {
     width: '100%',
     height: cardWidth * 0.75,
-    backgroundColor: colors.borderLight,
+    backgroundColor: '#f0ede8',
     position: 'relative',
   },
   image: {
@@ -119,31 +120,31 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: colors.borderLight,
+    backgroundColor: '#f0ede8',
   },
   placeholderText: {
     fontSize: 40,
   },
   favoriteButton: {
     position: 'absolute',
-    top: spacing.sm,
-    right: spacing.sm,
+    top: 8,
+    right: 8,
     backgroundColor: 'rgba(0,0,0,0.3)',
-    borderRadius: borderRadius.round,
-    padding: spacing.xs,
+    borderRadius: 999,
+    padding: 6,
   },
   cardFooter: {
-    padding: spacing.md,
-    gap: spacing.xs,
+    padding: 12,
+    gap: 4,
   },
   breedName: {
-    fontSize: typography.body.fontSize,
-    fontWeight: '600' as const,
-    color: colors.text,
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#2c2c2c',
   },
   temperament: {
-    fontSize: typography.bodySmall.fontSize,
-    color: colors.textSecondary,
-    textTransform: 'capitalize' as const,
+    fontSize: 12,
+    color: '#666',
+    textTransform: 'capitalize',
   },
 });

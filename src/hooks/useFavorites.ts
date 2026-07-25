@@ -1,7 +1,8 @@
-import { useState, useEffect, useCallback } from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Breed } from '@/app/types/Breed';
 import { FAVORITES_KEY } from '@/utils/constants';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+import { useCallback, useEffect, useState } from 'react';
 
 export function useFavorites() {
   const [favorites, setFavorites] = useState<Breed[]>([]);
@@ -43,7 +44,8 @@ export function useFavorites() {
 
   useEffect(() => {
     loadFavorites();
-  }, []);
+  }, [loadFavorites]);
+
 
   return {
     favorites,

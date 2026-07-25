@@ -2,7 +2,6 @@ import React,{useState, useRef, useEffect} from "react";
 import { router,} from "expo-router";
 import { Text, View, StyleSheet,TouchableOpacity,ScrollView,Animated,Dimensions,Platform, } from "react-native";
 import { StatusBar } from "expo-status-bar";
-import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import * as Haptics from 'expo-haptics';
 import { WelcomeHeader } from '@/components/landing/WelcomeHeader';
@@ -18,6 +17,7 @@ export default function WelcomeScreen(): React.ReactElement{
   const scaleAnim = useRef(new Animated.Value(0.9)).current;
   const buttonScale = useRef(new Animated.Value(1)).current;
 
+  // adding animation effect to load my landing page
   useEffect(() => {
     Animated.parallel([
       Animated.timing(fadeAnim, {
@@ -137,6 +137,7 @@ export default function WelcomeScreen(): React.ReactElement{
   );
 }
 
+// styles of the whole page, 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
