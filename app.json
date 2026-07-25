@@ -17,7 +17,8 @@
         "backgroundImage": "./assets/images/android-icon-background.png",
         "monochromeImage": "./assets/images/android-icon-monochrome.png"
       },
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "package": "com.fulgence.mydog"
     },
     "web": {
       "output": "static",
@@ -41,7 +42,11 @@
     },
     "extra": {
       "API_KEY": "live_nisPJnGhhrJKzyGNgO9vNBGT9RbLsuRNkLP7BGxcE4B0TZ4rHw3lHKlQEuyVQMZG",
-      "API_BASE_URL": "https://api.thedogapi.com/v1"
+      "API_BASE_URL": "https://api.thedogapi.com/v1",
+      "router": {},
+      "eas": {
+        "projectId": "e7681d44-86d7-40d8-bc8e-79866dbeb425"
+      }
     }
   }
 }
